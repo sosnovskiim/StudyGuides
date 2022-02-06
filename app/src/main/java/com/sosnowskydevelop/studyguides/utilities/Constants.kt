@@ -1,0 +1,6 @@
+package com.sosnowskydevelop.studyguides.utilities
+
+const val REQUEST_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES =
+    "requestKeyCategoryIdFromCategoriesToSubcategories"
+const val BUNDLE_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES =
+    "bundleKeyCategoryIdFromCategoriesToSubcategories"

@@ -9,6 +9,18 @@
         android:id="@+id/categoriesFragment"
         android:name="com.sosnowskydevelop.studyguides.fragments.CategoriesFragment"
         android:label="CategoriesFragment"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories">
+
+        <action
+            android:id="@+id/action_categoriesFragment_to_subcategoriesFragment"
+            app:destination="@id/subcategoriesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/subcategoriesFragment"
+        android:name="com.sosnowskydevelop.studyguides.fragments.SubcategoriesFragment"
+        android:label="SubcategoriesFragment"
+        tools:layout="@layout/fragment_subcategories" />
 
 </navigation>
