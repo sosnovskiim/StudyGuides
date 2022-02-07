@@ -1,7 +1,6 @@
 package com.sosnowskydevelop.studyguides.fragments
 
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sosnowskydevelop.studyguides.adapters.CategoriesListAdapter
 import com.sosnowskydevelop.studyguides.adapters.SubcategoriesListAdapter
-import com.sosnowskydevelop.studyguides.databinding.FragmentCategoriesBinding
 import com.sosnowskydevelop.studyguides.databinding.FragmentSubcategoriesBinding
 import com.sosnowskydevelop.studyguides.utilities.BUNDLE_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES
 import com.sosnowskydevelop.studyguides.utilities.InjectorUtils
@@ -50,6 +47,7 @@ class SubcategoriesFragment : Fragment() {
 
         val adapter = SubcategoriesListAdapter(
             subcategories = viewModel.subcategories,
+            fragment = this,
         )
         binding.subcategories.adapter = adapter
 

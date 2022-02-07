@@ -18,7 +18,9 @@ class CategoriesListAdapter(
     private val categories: Array<Category>,
     private val fragment: Fragment,
 ) : RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>() {
-    class ViewHolder(val binding: ListItemCategoryBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(
+        val binding: ListItemCategoryBinding
+    ) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
@@ -28,7 +30,8 @@ class CategoriesListAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.viewModel = CategoryListItemViewModel(category = categories[position])
+        holder.binding.viewModel =
+            CategoryListItemViewModel(category = categories[position])
         holder.binding.categoryName.setOnClickListener {
             fragment.setFragmentResult(
                 requestKey = REQUEST_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES,

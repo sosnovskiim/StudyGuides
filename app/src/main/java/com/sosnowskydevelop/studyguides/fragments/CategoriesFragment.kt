@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sosnowskydevelop.studyguides.R
 import com.sosnowskydevelop.studyguides.adapters.CategoriesListAdapter
 import com.sosnowskydevelop.studyguides.databinding.FragmentCategoriesBinding
 import com.sosnowskydevelop.studyguides.utilities.InjectorUtils
@@ -37,8 +36,6 @@ class CategoriesFragment : Fragment() {
 
         val actionBar: ActionBar? = (requireActivity() as AppCompatActivity).supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(false)
-//        actionBar?.title = resources.getString(R.string.main_screen_title)
-//        actionBar?.subtitle = resources.getString(R.string.main_screen_subtitle)
         actionBar?.hide()
 
         val layoutManager = LinearLayoutManager(requireContext())
