@@ -43,6 +43,7 @@ class GuidesFragment : Fragment() {
 
         val adapter = GuidesListAdapter(
             guides = viewModel.guides,
+            fragment = this,
         )
         binding.guides.adapter = adapter
 

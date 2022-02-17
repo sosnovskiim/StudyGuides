@@ -4,10 +4,7 @@ import android.content.Context
 import com.sosnowskydevelop.studyguides.data.CategoriesRepository
 import com.sosnowskydevelop.studyguides.data.GuidesRepository
 import com.sosnowskydevelop.studyguides.data.SubcategoriesRepository
-import com.sosnowskydevelop.studyguides.viewmodels.CategoriesViewModelFactory
-import com.sosnowskydevelop.studyguides.viewmodels.GuidesViewModelFactory
-import com.sosnowskydevelop.studyguides.viewmodels.SubSubcategoriesViewModelFactory
-import com.sosnowskydevelop.studyguides.viewmodels.SubcategoriesViewModelFactory
+import com.sosnowskydevelop.studyguides.viewmodels.*
 
 object InjectorUtils {
     private fun getCategoriesRepository(context: Context) =
@@ -38,6 +35,11 @@ object InjectorUtils {
     fun provideGuidesViewModelFactory(context: Context) =
         GuidesViewModelFactory(
             subcategoriesRepository = getSubcategoriesRepository(context = context),
+            guidesRepository = getGuidesRepository(context = context),
+        )
+
+    fun provideGuideLinkViewModelFactory(context: Context) =
+        GuideLinkViewModelFactory(
             guidesRepository = getGuidesRepository(context = context),
         )
 }
