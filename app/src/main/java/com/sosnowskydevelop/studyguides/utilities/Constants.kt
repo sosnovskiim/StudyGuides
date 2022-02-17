@@ -5,6 +5,11 @@ const val REQUEST_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES =
 const val BUNDLE_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES =
     "bundleKeyCategoryIdFromCategoriesToSubcategories"
 
+const val REQUEST_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_SUB_SUBCATEGORIES =
+    "requestKeySubcategoryIdFromSubcategoriesToSubSubcategories"
+const val BUNDLE_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_SUB_SUBCATEGORIES =
+    "bundleKeySubcategoryIdFromSubcategoriesToSubSubcategories"
+
 const val REQUEST_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES =
     "requestKeySubcategoryIdFromSubcategoriesToGuides"
 const val BUNDLE_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES =

@@ -6,6 +6,7 @@ import com.sosnowskydevelop.studyguides.data.GuidesRepository
 import com.sosnowskydevelop.studyguides.data.SubcategoriesRepository
 import com.sosnowskydevelop.studyguides.viewmodels.CategoriesViewModelFactory
 import com.sosnowskydevelop.studyguides.viewmodels.GuidesViewModelFactory
+import com.sosnowskydevelop.studyguides.viewmodels.SubSubcategoriesViewModelFactory
 import com.sosnowskydevelop.studyguides.viewmodels.SubcategoriesViewModelFactory
 
 object InjectorUtils {
@@ -26,6 +27,11 @@ object InjectorUtils {
     fun provideSubcategoriesViewModelFactory(context: Context) =
         SubcategoriesViewModelFactory(
             categoriesRepository = getCategoriesRepository(context = context),
+            subcategoriesRepository = getSubcategoriesRepository(context = context),
+        )
+
+    fun provideSubSubcategoriesViewModelFactory(context: Context) =
+        SubSubcategoriesViewModelFactory(
             subcategoriesRepository = getSubcategoriesRepository(context = context),
         )
 

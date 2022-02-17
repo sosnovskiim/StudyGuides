@@ -2,7 +2,6 @@ package com.sosnowskydevelop.studyguides.data
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import com.sosnowskydevelop.studyguides.utilities.DatabaseHelper
@@ -10,8 +9,6 @@ import java.io.IOException
 
 @SuppressLint("Range")
 class SubcategoriesRepository(context: Context) {
-    private var subcategories: Array<Subcategory> = arrayOf()
-
     private val database: SQLiteDatabase
 
     init {
@@ -28,41 +25,44 @@ class SubcategoriesRepository(context: Context) {
         } catch (mSQLException: SQLException) {
             throw mSQLException
         }
-
-        val cursor: Cursor = database.query(
-            "Subcategory",
-            arrayOf(
-                "_id",
-                "name",
-                "categoryId",
-            ),
-            null, null, null, null, null
-        )
-
-        var isEntryNotEmpty: Boolean = cursor.moveToFirst()
-        while (isEntryNotEmpty) {
-            subcategories += Subcategory(
-                _id = cursor.getInt(cursor.getColumnIndex("_id")),
-                name = cursor.getString(cursor.getColumnIndex("name")),
-                categoryId = cursor.getInt(cursor.getColumnIndex("categoryId")),
-            )
-            isEntryNotEmpty = cursor.moveToNext()
-        }
-        cursor.close()
     }
 
-    fun getSubcategory(subcategoryId: Int): Subcategory = subcategories[subcategoryId - 1]
-
-    fun getSubcategories(categoryId: Int): Array<Subcategory> {
-        var result: Array<Subcategory> = arrayOf()
-
-        subcategories.forEach { subcategory ->
-            if (subcategory.categoryId == categoryId) {
-                result += subcategory
+    fun getSubcategory(subcategoryId: Int): Subcategory? {
+        database.rawQuery(
+            "SELECT * FROM Main WHERE _id = $subcategoryId",
+            null,
+        ).use { cursor ->
+            if (cursor.moveToFirst()) {
+                return Subcategory(
+                    id = cursor.getInt(cursor.getColumnIndex("_id")),
+                    parentId = cursor.getInt(cursor.getColumnIndex("parentId")),
+                    name = cursor.getString(cursor.getColumnIndex("name")),
+                )
             }
-        }
 
-        return result
+            return null
+        }
+    }
+
+    fun getSubcategories(parentId: Int): Array<Subcategory> {
+        database.rawQuery(
+            "SELECT * FROM Main WHERE parentId = $parentId",
+            null,
+        ).use { cursor ->
+            var result: Array<Subcategory> = arrayOf()
+
+            if (cursor.moveToFirst()) {
+                do {
+                    result += Subcategory(
+                        id = cursor.getInt(cursor.getColumnIndex("_id")),
+                        parentId = cursor.getInt(cursor.getColumnIndex("parentId")),
+                        name = cursor.getString(cursor.getColumnIndex("name")),
+                    )
+                } while (cursor.moveToNext())
+            }
+
+            return result
+        }
     }
 
     companion object {

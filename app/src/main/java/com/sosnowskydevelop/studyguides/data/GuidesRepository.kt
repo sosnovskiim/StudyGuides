@@ -28,47 +28,48 @@ class GuidesRepository(context: Context) {
         } catch (mSQLException: SQLException) {
             throw mSQLException
         }
-
-        val cursor: Cursor = database.query(
-            "Guide",
-            arrayOf(
-                "_id",
-                "name",
-                "value",
-                "type",
-                "subcategoryId",
-            ),
-            null, null, null, null, null
-        )
-
-        var isEntryNotEmpty: Boolean = cursor.moveToFirst()
-        while (isEntryNotEmpty) {
-            guides += Guide(
-                _id = cursor.getInt(cursor.getColumnIndex("_id")),
-                name = cursor.getString(cursor.getColumnIndex("name")),
-                value = cursor.getString(cursor.getColumnIndex("value")),
-                type = cursor.getString(cursor.getColumnIndex("type")),
-                subcategoryId = cursor.getInt(cursor.getColumnIndex("subcategoryId")),
-            )
-            isEntryNotEmpty = cursor.moveToNext()
-        }
-        cursor.close()
     }
 
-    fun getGuide(guideId: Int): Guide = guides[guideId - 1]
-
-    fun getGuides(subcategoryId: Int): Array<Guide> {
-        var result: Array<Guide> = arrayOf()
-
-        guides.forEach { guide ->
-            if (guide.subcategoryId == subcategoryId) {
-                result += guide
+    fun getGuide(guideId: Int): Guide? {
+        database.rawQuery(
+            "SELECT * FROM Main WHERE _id = $guideId",
+            null,
+        ).use { cursor ->
+            if (cursor.moveToFirst()) {
+                return Guide(
+                    id = cursor.getInt(cursor.getColumnIndex("_id")),
+                    parentId = cursor.getInt(cursor.getColumnIndex("parentId")),
+                    name = cursor.getString(cursor.getColumnIndex("name")),
+                    value = cursor.getString(cursor.getColumnIndex("value")),
+                    type = cursor.getString(cursor.getColumnIndex("type")),
+                )
             }
+
+            return null
         }
+    }
 
-        result.sortBy { it.name }
+    fun getGuides(parentId: Int): Array<Guide> {
+        database.rawQuery(
+            "SELECT * FROM Main WHERE parentId = $parentId ORDER BY name",
+            null,
+        ).use { cursor ->
+            var result: Array<Guide> = arrayOf()
 
-        return result
+            if (cursor.moveToFirst()) {
+                do {
+                    result += Guide(
+                        id = cursor.getInt(cursor.getColumnIndex("_id")),
+                        parentId = cursor.getInt(cursor.getColumnIndex("parentId")),
+                        name = cursor.getString(cursor.getColumnIndex("name")),
+                        value = cursor.getString(cursor.getColumnIndex("value")),
+                        type = cursor.getString(cursor.getColumnIndex("type")),
+                    )
+                } while (cursor.moveToNext())
+            }
+
+            return result
+        }
     }
 
     companion object {

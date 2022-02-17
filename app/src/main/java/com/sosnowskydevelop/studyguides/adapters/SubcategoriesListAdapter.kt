@@ -11,7 +11,9 @@ import com.sosnowskydevelop.studyguides.R
 import com.sosnowskydevelop.studyguides.data.Subcategory
 import com.sosnowskydevelop.studyguides.databinding.ListItemSubcategoryBinding
 import com.sosnowskydevelop.studyguides.utilities.BUNDLE_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES
+import com.sosnowskydevelop.studyguides.utilities.BUNDLE_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_SUB_SUBCATEGORIES
 import com.sosnowskydevelop.studyguides.utilities.REQUEST_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES
+import com.sosnowskydevelop.studyguides.utilities.REQUEST_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_SUB_SUBCATEGORIES
 import com.sosnowskydevelop.studyguides.viewmodels.SubcategoryListItemViewModel
 
 class SubcategoriesListAdapter(
@@ -32,16 +34,35 @@ class SubcategoriesListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.viewModel =
             SubcategoryListItemViewModel(subcategory = subcategories[position])
-        holder.binding.subcategoryName.setOnClickListener {
-            fragment.setFragmentResult(
-                requestKey = REQUEST_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES,
-                result = bundleOf(
-                    BUNDLE_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES
-                            to subcategories[position]._id
+        if (subcategories[position].id in arrayOf(3, 4, 5)) {
+            holder.binding.subcategoryName.setOnClickListener {
+                fragment.setFragmentResult(
+                    requestKey = REQUEST_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_SUB_SUBCATEGORIES,
+                    result = bundleOf(
+                        BUNDLE_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_SUB_SUBCATEGORIES
+                                to subcategories[position].id
+                    )
                 )
-            )
-            fragment.findNavController()
-                .navigate(R.id.action_subcategoriesFragment_to_guidesFragment)
+                fragment.findNavController()
+                    .navigate(R.id.action_subcategoriesFragment_to_subSubcategoriesFragment)
+            }
+        } else {
+            holder.binding.subcategoryName.setOnClickListener {
+                fragment.setFragmentResult(
+                    requestKey = REQUEST_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES,
+                    result = bundleOf(
+                        BUNDLE_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES
+                                to subcategories[position].id
+                    )
+                )
+                if (subcategories[position].id in arrayOf(6, 7, 8)) {
+                    fragment.findNavController()
+                        .navigate(R.id.action_subcategoriesFragment_to_guidesFragment)
+                } else {
+                    fragment.findNavController()
+                        .navigate(R.id.action_subSubcategoriesFragment_to_guidesFragment)
+                }
+            }
         }
     }
 

@@ -18,6 +18,6 @@ class SubcategoriesViewModel(
         categoryId: Int,
     ) {
         category = categoriesRepository.getCategory(categoryId = categoryId)
-        subcategories = subcategoriesRepository.getSubcategories(categoryId = categoryId)
+        subcategories = subcategoriesRepository.getSubcategories(parentId = categoryId)
     }
 }

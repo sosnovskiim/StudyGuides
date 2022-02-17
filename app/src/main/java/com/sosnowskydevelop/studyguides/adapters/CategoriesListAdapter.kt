@@ -30,18 +30,20 @@ class CategoriesListAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.viewModel =
-            CategoryListItemViewModel(category = categories[position])
-        holder.binding.categoryName.setOnClickListener {
-            fragment.setFragmentResult(
-                requestKey = REQUEST_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES,
-                result = bundleOf(
-                    BUNDLE_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES
-                            to categories[position]._id
+        if (categories.isNotEmpty()) {
+            holder.binding.viewModel =
+                CategoryListItemViewModel(category = categories[position])
+            holder.binding.categoryName.setOnClickListener {
+                fragment.setFragmentResult(
+                    requestKey = REQUEST_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES,
+                    result = bundleOf(
+                        BUNDLE_KEY_CATEGORY_ID_FROM_CATEGORIES_TO_SUBCATEGORIES
+                                to categories[position].id
+                    )
                 )
-            )
-            fragment.findNavController()
-                .navigate(R.id.action_categoriesFragment_to_subcategoriesFragment)
+                fragment.findNavController()
+                    .navigate(R.id.action_categoriesFragment_to_subcategoriesFragment)
+            }
         }
     }
 

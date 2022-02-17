@@ -27,6 +27,22 @@
             android:id="@+id/action_subcategoriesFragment_to_guidesFragment"
             app:destination="@id/guidesFragment" />
 
+        <action
+            android:id="@+id/action_subcategoriesFragment_to_subSubcategoriesFragment"
+            app:destination="@id/subSubcategoriesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/subSubcategoriesFragment"
+        android:name="com.sosnowskydevelop.studyguides.fragments.SubSubcategoriesFragment"
+        android:label="SubSubcategoriesFragment"
+        tools:layout="@layout/fragment_sub_subcategories">
+
+        <action
+            android:id="@+id/action_subSubcategoriesFragment_to_guidesFragment"
+            app:destination="@id/guidesFragment" />
+
     </fragment>
 
     <fragment

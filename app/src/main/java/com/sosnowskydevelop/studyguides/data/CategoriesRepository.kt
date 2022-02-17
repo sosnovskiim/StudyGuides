@@ -10,11 +10,10 @@ import java.io.IOException
 
 @SuppressLint("Range")
 class CategoriesRepository(context: Context) {
-    private var categories: Array<Category> = arrayOf()
+    private val database: SQLiteDatabase
 
     init {
         val databaseHelper = DatabaseHelper(context)
-        val database: SQLiteDatabase
 
         try {
             databaseHelper.updateDataBase()
@@ -27,30 +26,43 @@ class CategoriesRepository(context: Context) {
         } catch (mSQLException: SQLException) {
             throw mSQLException
         }
-
-        val cursor: Cursor = database.query(
-            "Category",
-            arrayOf(
-                "_id",
-                "name",
-            ),
-            null, null, null, null, null
-        )
-
-        var isEntryNotEmpty: Boolean = cursor.moveToFirst()
-        while (isEntryNotEmpty) {
-            categories += Category(
-                _id = cursor.getInt(cursor.getColumnIndex("_id")),
-                name = cursor.getString(cursor.getColumnIndex("name")),
-            )
-            isEntryNotEmpty = cursor.moveToNext()
-        }
-        cursor.close()
     }
 
-    fun getCategory(categoryId: Int): Category = categories[categoryId - 1]
+    fun getCategory(categoryId: Int): Category? {
+        database.rawQuery(
+            "SELECT * FROM Main WHERE _id = $categoryId",
+            null,
+        ).use { cursor ->
+            if (cursor.moveToFirst()) {
+                return Category(
+                    id = cursor.getInt(cursor.getColumnIndex("_id")),
+                    name = cursor.getString(cursor.getColumnIndex("name")),
+                )
+            }
 
-    fun getCategories(): Array<Category> = categories
+            return null
+        }
+    }
+
+    fun getCategories(): Array<Category> {
+        database.rawQuery(
+            "SELECT * FROM Main WHERE parentId = 0",
+            null,
+        ).use { cursor ->
+            var result: Array<Category> = arrayOf()
+
+            if (cursor.moveToFirst()) {
+                do {
+                    result += Category(
+                        id = cursor.getInt(cursor.getColumnIndex("_id")),
+                        name = cursor.getString(cursor.getColumnIndex("name")),
+                    )
+                } while (cursor.moveToNext())
+            }
+
+            return result
+        }
+    }
 
     companion object {
         // For Singleton instantiation
