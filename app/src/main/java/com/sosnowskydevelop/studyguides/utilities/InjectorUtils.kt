@@ -38,6 +38,11 @@ object InjectorUtils {
             guidesRepository = getGuidesRepository(context = context),
         )
 
+    fun provideGuideImageViewModelFactory(context: Context) =
+        GuideImageViewModelFactory(
+            guidesRepository = getGuidesRepository(context = context),
+        )
+
     fun provideGuideLinkViewModelFactory(context: Context) =
         GuideLinkViewModelFactory(
             guidesRepository = getGuidesRepository(context = context),

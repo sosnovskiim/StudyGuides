@@ -14,11 +14,11 @@ import com.sosnowskydevelop.studyguides.utilities.*
 import com.sosnowskydevelop.studyguides.viewmodels.GuideLinkViewModel
 
 class GuideLinkFragment : Fragment() {
-    private lateinit var binding: FragmentGuideLinkBinding
-
     private val viewModel: GuideLinkViewModel by viewModels {
         InjectorUtils.provideGuideLinkViewModelFactory(context = requireContext())
     }
+
+    private lateinit var binding: FragmentGuideLinkBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

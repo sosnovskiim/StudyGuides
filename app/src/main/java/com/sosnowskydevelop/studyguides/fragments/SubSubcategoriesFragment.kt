@@ -17,11 +17,11 @@ import com.sosnowskydevelop.studyguides.utilities.*
 import com.sosnowskydevelop.studyguides.viewmodels.SubSubcategoriesViewModel
 
 class SubSubcategoriesFragment : Fragment() {
-    private lateinit var binding: FragmentSubSubcategoriesBinding
-
     private val viewModel: SubSubcategoriesViewModel by viewModels {
         InjectorUtils.provideSubSubcategoriesViewModelFactory(context = requireContext())
     }
+
+    private lateinit var binding: FragmentSubSubcategoriesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

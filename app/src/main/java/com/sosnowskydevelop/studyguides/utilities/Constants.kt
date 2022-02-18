@@ -15,6 +15,11 @@ const val REQUEST_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES =
 const val BUNDLE_KEY_SUBCATEGORY_ID_FROM_SUBCATEGORIES_TO_GUIDES =
     "bundleKeySubcategoryIdFromSubcategoriesToGuides"
 
+const val REQUEST_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_IMAGE =
+    "requestKeyGuideIdFromGuidesToGuideImage"
+const val BUNDLE_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_IMAGE =
+    "bundleKeyGuideIdFromGuidesToGuideImage"
+
 const val REQUEST_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_LINK =
     "requestKeyGuideIdFromGuidesToGuideLink"
 const val BUNDLE_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_LINK =

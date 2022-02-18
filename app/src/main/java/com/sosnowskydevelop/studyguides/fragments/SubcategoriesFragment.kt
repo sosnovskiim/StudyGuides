@@ -19,11 +19,11 @@ import com.sosnowskydevelop.studyguides.utilities.REQUEST_KEY_CATEGORY_ID_FROM_C
 import com.sosnowskydevelop.studyguides.viewmodels.SubcategoriesViewModel
 
 class SubcategoriesFragment : Fragment() {
-    private lateinit var binding: FragmentSubcategoriesBinding
-
     private val viewModel: SubcategoriesViewModel by viewModels {
         InjectorUtils.provideSubcategoriesViewModelFactory(context = requireContext())
     }
+
+    private lateinit var binding: FragmentSubcategoriesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

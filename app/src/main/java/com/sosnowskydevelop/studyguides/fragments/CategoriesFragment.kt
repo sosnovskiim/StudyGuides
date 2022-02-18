@@ -16,11 +16,11 @@ import com.sosnowskydevelop.studyguides.utilities.InjectorUtils
 import com.sosnowskydevelop.studyguides.viewmodels.CategoriesViewModel
 
 class CategoriesFragment : Fragment() {
-    private lateinit var binding: FragmentCategoriesBinding
-
     private val viewModel: CategoriesViewModel by viewModels {
         InjectorUtils.provideCategoriesViewModelFactory(context = requireContext())
     }
+
+    private lateinit var binding: FragmentCategoriesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

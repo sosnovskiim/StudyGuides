@@ -17,11 +17,11 @@ import com.sosnowskydevelop.studyguides.utilities.*
 import com.sosnowskydevelop.studyguides.viewmodels.GuidesViewModel
 
 class GuidesFragment : Fragment() {
-    private lateinit var binding: FragmentGuidesBinding
-
     private val viewModel: GuidesViewModel by viewModels {
         InjectorUtils.provideGuidesViewModelFactory(context = requireContext())
     }
+
+    private lateinit var binding: FragmentGuidesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
