@@ -24,3 +24,8 @@ const val REQUEST_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_LINK =
     "requestKeyGuideIdFromGuidesToGuideLink"
 const val BUNDLE_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_LINK =
     "bundleKeyGuideIdFromGuidesToGuideLink"
+
+const val REQUEST_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_PDF =
+    "requestKeyGuideIdFromGuidesToGuidePdf"
+const val BUNDLE_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_PDF =
+    "bundleKeyGuideIdFromGuidesToGuidePdf"

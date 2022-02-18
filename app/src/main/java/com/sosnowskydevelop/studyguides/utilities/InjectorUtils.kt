@@ -47,4 +47,9 @@ object InjectorUtils {
         GuideLinkViewModelFactory(
             guidesRepository = getGuidesRepository(context = context),
         )
+
+    fun provideGuidePdfViewModelFactory(context: Context) =
+        GuidePdfViewModelFactory(
+            guidesRepository = getGuidesRepository(context = context),
+        )
 }

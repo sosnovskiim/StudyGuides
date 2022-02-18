@@ -11,11 +11,9 @@ import com.sosnowskydevelop.studyguides.R
 import com.sosnowskydevelop.studyguides.data.Guide
 import com.sosnowskydevelop.studyguides.data.IMAGE
 import com.sosnowskydevelop.studyguides.data.LINK
+import com.sosnowskydevelop.studyguides.data.PDF
 import com.sosnowskydevelop.studyguides.databinding.ListItemGuideBinding
-import com.sosnowskydevelop.studyguides.utilities.BUNDLE_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_IMAGE
-import com.sosnowskydevelop.studyguides.utilities.BUNDLE_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_LINK
-import com.sosnowskydevelop.studyguides.utilities.REQUEST_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_IMAGE
-import com.sosnowskydevelop.studyguides.utilities.REQUEST_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_LINK
+import com.sosnowskydevelop.studyguides.utilities.*
 import com.sosnowskydevelop.studyguides.viewmodels.GuideListItemViewModel
 
 class GuidesListAdapter(
@@ -59,6 +57,17 @@ class GuidesListAdapter(
                     )
                     fragment.findNavController()
                         .navigate(R.id.action_guidesFragment_to_guideLinkFragment)
+                }
+                PDF -> {
+                    fragment.setFragmentResult(
+                        requestKey = REQUEST_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_PDF,
+                        result = bundleOf(
+                            BUNDLE_KEY_GUIDE_ID_FROM_GUIDES_TO_GUIDE_PDF
+                                    to guides[position].id
+                        )
+                    )
+                    fragment.findNavController()
+                        .navigate(R.id.action_guidesFragment_to_guidePdfFragment)
                 }
             }
         }

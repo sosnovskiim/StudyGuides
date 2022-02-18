@@ -15,21 +15,21 @@
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textSize="32sp"
-            app:layout_constraintBottom_toTopOf="@id/guideImage"
+            app:layout_constraintBottom_toTopOf="@id/guidePdf"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Названия пособия" />
 
-        <com.sosnowskydevelop.studyguides.utilities.TouchImageView
-            android:id="@+id/guideImage"
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/guidePdf"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideName"
-            tools:src="@mipmap/ic_launcher" />
+            tools:background="@mipmap/ic_launcher" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

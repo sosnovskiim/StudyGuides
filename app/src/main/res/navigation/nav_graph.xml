@@ -59,6 +59,10 @@
             android:id="@+id/action_guidesFragment_to_guideLinkFragment"
             app:destination="@id/guideLinkFragment" />
 
+        <action
+            android:id="@+id/action_guidesFragment_to_guidePdfFragment"
+            app:destination="@id/guidePdfFragment" />
+
     </fragment>
 
     <fragment
@@ -72,5 +76,11 @@
         android:name="com.sosnowskydevelop.studyguides.fragments.GuideLinkFragment"
         android:label="GuideLinkFragment"
         tools:layout="@layout/fragment_guide_link" />
+
+    <fragment
+        android:id="@+id/guidePdfFragment"
+        android:name="com.sosnowskydevelop.studyguides.fragments.GuidePdfFragment"
+        android:label="GuidePdfFragment"
+        tools:layout="@layout/fragment_guide_pdf" />
 
 </navigation>
