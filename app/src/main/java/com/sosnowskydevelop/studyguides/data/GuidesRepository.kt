@@ -68,6 +68,8 @@ class GuidesRepository(context: Context) {
                 } while (cursor.moveToNext())
             }
 
+            result.sortBy { it.id }
+
             return result
         }
     }
